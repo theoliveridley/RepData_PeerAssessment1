@@ -47,7 +47,6 @@ the dataset.
 
 ###Results
 
-
 ```{r q1, cache = FALSE, echo= TRUE, warning=FALSE}
 #Use ddply from plyr to total steps by date.
 actsummary <- ddply(act, .(date), summarize, totalsteps = sum(steps))
@@ -92,7 +91,7 @@ bias into some calculations or summaries of the data.
 4. Make a histogram of the total number of steps taken each day and Calculate and report the **mean** and **median** total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ###Results
-
+The missing values in intervals where data was not available were replaced by the median steps for the interval. This approach was preferred over mean interval steps, or mean/median day steps as being a more realistic representation of activity. 
 
 ```{r miss, cache= FALSE, echo = TRUE}
 #How many missing values?
@@ -106,7 +105,7 @@ actimpdatesummary <- ddply(actimp, .(date), summarize, totalsteps  = sum(steps))
 qplot(totalsteps, data = actimpdatesummary)
 ```
 
-The missing values in intervals where data was not available were replaced by the median steps for the interval. THe biggest difference between the histograms with and without imputed missing values is that there is another large peak to the distribution at the lower end of the distribution, closer to zero steps. This may be illustrated by looking at the new means and medians for the distribution. 
+The biggest difference between the histograms with and without imputed missing values is that there is another large peak to the distribution at the lower end of the distribution, closer to zero steps. This may be illustrated by looking at the new means and medians for the distribution. 
 ```{r meanmiss, cache=FALSE, echo=TRUE}
 #Calculate new mean and median
 mean(actimpdatesummary$totalsteps, na.rm = TRUE)
@@ -126,7 +125,7 @@ the dataset with the filled-in missing values for this part.
 2. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
 ###Results
-
+Next, the data was examined for differences between activity between weekdays and weekends.
 
 ```{r week, cache=FALSE, echo = TRUE, warning=FALSE}
 #Add weekend/weekday designation to the dates using wday from lubridate as alternative for weekdays()
