@@ -27,35 +27,8 @@ Show any code that is needed to
 
 ```r
 require(lubridate)
-```
-
-```
-## Loading required package: lubridate
-```
-
-```r
 require(ggplot2)
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```r
 require(plyr)
-```
-
-```
-## Loading required package: plyr
-## 
-## Attaching package: 'plyr'
-## 
-## The following object is masked from 'package:lubridate':
-## 
-##     here
-```
-
-```r
 if (!file.exists("activity.csv")) unzip("activity.zip")
 
 act <- read.csv("activity.csv")
@@ -75,7 +48,6 @@ the dataset.
 2. Calculate and report the **mean** and **median** total number of steps taken per day
 
 ###Results
-
 
 
 ```r
@@ -153,7 +125,7 @@ bias into some calculations or summaries of the data.
 4. Make a histogram of the total number of steps taken each day and Calculate and report the **mean** and **median** total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ###Results
-
+The missing values in intervals where data was not available were replaced by the median steps for the interval. This approach was preferred over mean interval steps, or mean/median day steps as being a more realistic representation of activity. 
 
 
 ```r
@@ -189,7 +161,7 @@ qplot(totalsteps, data = actimpdatesummary)
 ![plot of chunk miss](figure/miss.png) 
 
 
-The missing values in intervals where data was not available were replaced by the median steps for the interval. THe biggest difference between the histograms with and without imputed missing values is that there is another large peak to the distribution at the lower end of the distribution, closer to zero steps. This may be illustrated by looking at the new means and medians for the distribution. 
+The biggest difference between the histograms with and without imputed missing values is that there is another large peak to the distribution at the lower end of the distribution, closer to zero steps. This may be illustrated by looking at the new means and medians for the distribution. 
 
 ```r
 # Calculate new mean and median
@@ -222,7 +194,7 @@ the dataset with the filled-in missing values for this part.
 2. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
 ###Results
-
+Next, the data was examined for differences between activity between weekdays and weekends.
 
 
 ```r
