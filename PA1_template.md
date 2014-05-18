@@ -27,8 +27,28 @@ Show any code that is needed to
 
 ```r
 require(lubridate)
+```
+
+```
+## Loading required package: lubridate
+```
+
+```r
 require(ggplot2)
 require(plyr)
+```
+
+```
+## Loading required package: plyr
+## 
+## Attaching package: 'plyr'
+## 
+## The following object is masked from 'package:lubridate':
+## 
+##     here
+```
+
+```r
 if (!file.exists("activity.csv")) unzip("activity.zip")
 
 act <- read.csv("activity.csv")
@@ -54,11 +74,7 @@ the dataset.
 # Use ddply from plyr to total steps by date.
 actsummary <- ddply(act, .(date), summarize, totalsteps = sum(steps))
 # Plot histogram
-qplot(totalsteps, data = actsummary)
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+qplot(totalsteps, data = actsummary, geom = "bar", binwidth = 2500)
 ```
 
 ![plot of chunk q1](figure/q1.png) 
@@ -151,11 +167,7 @@ actimp$steps[is.na(actimp$steps)] <- actimp$mediansteps[is.na(actimp$steps)]
 actimp$meansteps <- NULL  #removes mean
 actimp$mediansteps <- NULL  #removes median 
 actimpdatesummary <- ddply(actimp, .(date), summarize, totalsteps = sum(steps))
-qplot(totalsteps, data = actimpdatesummary)
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+qplot(totalsteps, data = actimpdatesummary, binwidth = 2500)
 ```
 
 ![plot of chunk miss](figure/miss.png) 

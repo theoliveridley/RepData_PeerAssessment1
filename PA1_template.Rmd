@@ -51,7 +51,7 @@ the dataset.
 #Use ddply from plyr to total steps by date.
 actsummary <- ddply(act, .(date), summarize, totalsteps = sum(steps))
 #Plot histogram
-qplot(totalsteps, data = actsummary)
+qplot(totalsteps, data = actsummary, geom = "bar", binwidth = 2500)
 #Calculate mean and median
 mean(actsummary$totalsteps, na.rm = TRUE)
 median(actsummary$totalsteps, na.rm = TRUE)
@@ -102,7 +102,7 @@ actimp$steps[is.na(actimp$steps)] <- actimp$mediansteps[is.na(actimp$steps)]
 actimp$meansteps <- NULL #removes mean
 actimp$mediansteps <- NULL #removes median 
 actimpdatesummary <- ddply(actimp, .(date), summarize, totalsteps  = sum(steps))
-qplot(totalsteps, data = actimpdatesummary)
+qplot(totalsteps, data = actimpdatesummary, binwidth = 2500)
 ```
 
 The biggest difference between the histograms with and without imputed missing values is that there is another large peak to the distribution at the lower end of the distribution, closer to zero steps. This may be illustrated by looking at the new means and medians for the distribution. 
